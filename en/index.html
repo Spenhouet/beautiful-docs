@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="de de_index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="en en_index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -316,10 +316,10 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#einfuhrung" class="toc-h1 toc-link" data-title="Einführung">Einführung</a>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentifizierung" class="toc-h1 toc-link" data-title="Authentifizierung">Authentifizierung</a>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
             <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
@@ -336,26 +336,26 @@
               </ul>
           </li>
           <li>
-            <a href="#fehler" class="toc-h1 toc-link" data-title="Fehler">Fehler</a>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='/en'>Englisch</a></li>
-            <li><a href='/de'>Deutsch</a></li>
+            <li><a href='/en'>English</a></li>
+            <li><a href='/de'>German</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='einfuhrung'>Einführung</h1>
-<p>Herzlich Willkommen zur Kittn API! Sie können unsere API für den Zugriff auf Kittn API Endpunkte nutzen, welche Informationen zu verschiedenen Katzen aus unserer Datenbank abrufen kann.</p>
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
 
-<p>Wir haben Schnittstellen in Shell, Ruby, Python, and JavaScript! Die dunklen Fenster auf der Rechtenseite zeigen Ihnen Code Beispiele. Über die Tabs im oberen rechten Bereich können Sie zwischen den verschiedenen Sprachen wechseln.</p>
+<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-<p>Dieses Beispiel für eine API-Dokumentation wurde mit <a href="https://github.com/slatedocs/slate">Slate</a> erstellt. Sie können dieses Beispiel bearbeiten und als Basis für Ihre eigene API-Dokumentation verwenden.</p>
-<h1 id='authentifizierung'>Authentifizierung</h1>
+<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<h1 id='authentication'>Authentication</h1>
 <blockquote>
-<p>Um sich zu authentifizieren, nutzen Sie diesen Code:</p>
+<p>To authorize, use this code:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
@@ -371,17 +371,17 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div>
 <blockquote>
-<p>Ersetzen Sie <code>meowmeowmeow</code> mit Ihrem API-Schlüssel.</p>
+<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn verwendet API-Schlüssel um den Zugriff auf die API zu regeln. Sie können einen neuen Kittn API-Schlüssel auf unserem <a href="http://example.com/developers">Entwickler Portal</a> erhalten.</p>
+<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
 
-<p>Der API-Schlüssel muss bei jeder API-Anfrage im Header wie folgt mitgesendet werden:</p>
+<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
 <p><code>Authorization: meowmeowmeow</code></p>
 
 <aside class="notice">
-Ersetzen Sie <code>meowmeowmeow</code> mit Ihrem API-Schlüssel.
+You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
@@ -526,7 +526,7 @@ Remember — a happy kitten is an authenticated kitten!
 <td>The ID of the kitten to delete</td>
 </tr>
 </tbody></table>
-<h1 id='fehler'>Fehler</h1>
+<h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
