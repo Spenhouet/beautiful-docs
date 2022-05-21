@@ -1,7 +1,7 @@
 //= require ../lib/_lunr
 //= require ../lib/_jquery
 //= require ../lib/_jquery.highlight
-;(function () {
+; (function () {
   'use strict';
 
   var content, searchResults;
@@ -11,7 +11,7 @@
   var index;
 
   function populate() {
-    index = lunr(function(){
+    index = lunr(function () {
 
       this.ref('id');
       this.field('title', { boost: 10 });
@@ -19,7 +19,7 @@
       this.pipeline.add(lunr.trimmer, lunr.stopWordFilter);
       var lunrConfig = this;
 
-      $('h1, h2').each(function() {
+      $('h1, h2').each(function () {
         var title = $(this);
         var body = title.nextUntil('h1, h2');
         lunrConfig.add({
@@ -37,7 +37,7 @@
   $(bind);
 
   function determineSearchDelay() {
-    if (index.tokenSet.toArray().length>5000) {
+    if (index.tokenSet.toArray().length > 5000) {
       searchDelay = 300;
     }
   }
@@ -46,14 +46,14 @@
     content = $('.content');
     searchResults = $('.search-results');
 
-    $('#input-search').on('keyup',function(e) {
-      var wait = function() {
-        return function(executingFunction, waitTime){
+    $('#input-search').on('keyup', function (e) {
+      var wait = function () {
+        return function (executingFunction, waitTime) {
           clearTimeout(timeoutHandle);
           timeoutHandle = setTimeout(executingFunction, waitTime);
         };
       }();
-      wait(function(){
+      wait(function () {
         search(e);
       }, searchDelay);
     });
@@ -70,7 +70,7 @@
     if (event.keyCode === 27) searchInput.value = '';
 
     if (searchInput.value) {
-      var results = index.search(searchInput.value).filter(function(r) {
+      var results = index.search("*" + searchInput.value + "*").filter(function (r) {
         return r.score > 0.0001;
       });
 

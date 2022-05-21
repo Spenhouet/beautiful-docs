@@ -1,18 +1,31 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/slatedocs/img/main/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
-  <br>
-  <a href="https://github.com/slatedocs/slate/actions?query=workflow%3ABuild+branch%3Amain"><img src="https://github.com/slatedocs/slate/workflows/Build/badge.svg?branch=main" alt="Build Status"></a>
+  <a href="https://github.com/Spenhouet/beautiful-docs/actions?query=workflow%3ABuild+branch%3Amain"><img src="https://github.com/Spenhouet/beautiful-docs/workflows/Build/badge.svg?branch=main" alt="Build Status"></a>
   <a href="https://hub.docker.com/r/slatedocs/slate"><img src="https://img.shields.io/docker/v/slatedocs/slate?sort=semver" alt="Docker Version" /></a>
 </p>
 
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+<p align="center">This is a beautifully themed version of the <a href="https://github.com/slatedocs/slate">slate docs</a>.</p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/slatedocs/img/main/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Spenhouet/beautiful-docs/c642fa12587849f5d9cdb178d5eb8a0bb00c34ec/img/screenshot-beautiful-docs.png" width=700 alt="Screenshot of Example Documentation created with the beautiful-docs theme of Slate"></p>
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
+<p align="center"><em>Check this design out at <a href="https://spenhouet.com/beautiful-docs/en/">spenhouet.com/beautiful-docs</a>.</em></p>
 
-Features
-------------
+## Features
+
+### On top of Slate
+
+* **Internationalization (i18n) support** — These docs come with i18n fully set up. Just write your docs in what ever languages you want to support.
+
+* **Space efficient** — If there is no code block on the right, this slate design expands the left section over the whole page to give more room to your important content.
+
+* **Even more beautiful** — Sleek design and color theme.
+
+* **Search with wildcards** — The search box also matches partial matches.
+
+* **Subsection structure** — All content was structured in subsections.
+
+* **Mobile optimized** — Some small issues were addressed. 
+
+### Slate Base Features
 
 * **Clean, intuitive design** — With Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [PayPal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. Slate is responsive, so it looks great on tablets, phones, and even in print.
 
@@ -30,53 +43,51 @@ Features
 
 * **RTL Support** Full right-to-left layout for RTL languages such as Arabic, Persian (Farsi), Hebrew etc.
 
-Getting started with Slate is super easy! Simply press the green "use this template" button above and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](https://slatedocs.github.io/slate/).
+Getting started with Slate is super easy! Simply press the green "use this template" button above and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](https://spenhouet.com/beautiful-docs/en/).
 
-Getting Started with Slate
-------------------------------
+## Getting Started
 
-To get started with Slate, please check out the [Getting Started](https://github.com/slatedocs/slate/wiki#getting-started)
-section in our [wiki](https://github.com/slatedocs/slate/wiki).
+Provided in the slate repo is a Dockerfile you can use to run slate using [Docker](https://www.docker.com/), as well as providing pre-built images on [Docker Hub](https://hub.docker.com/r/slatedocs/slate). Docker is similar to Vagrant in that it provides a reproducible, portable development environment using virtualization, however it does not provide a full VM, rather piggy backing off the host, allowing for a slimmer installation profile than Vagrant / full VMs. However, Docker does come with a number of its own terms, and for beginners, we recommend looking at
+[this Glossary](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/container-docker-introduction/docker-terminology)
+to familiarize yourself with some of them.
 
-We support running Slate in three different ways:
-* [Natively](https://github.com/slatedocs/slate/wiki/Using-Slate-Natively)
-* [Using Vagrant](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Vagrant)
-* [Using Docker](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Docker)
+### Dependencies
 
-Companies Using Slate
----------------------------------
+* [Docker](https://www.docker.com/), see [this page](https://www.docker.com/get-started) for installing Docker Desktop.
 
-* [NASA](https://api.nasa.gov)
-* [Sony](http://developers.cimediacloud.com)
-* [Best Buy](https://bestbuyapis.github.io/api-documentation/)
-* [Travis-CI](https://docs.travis-ci.com/api/)
-* [Greenhouse](https://developers.greenhouse.io/harvest.html)
-* [WooCommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
-* [Dwolla](https://docs.dwolla.com/)
-* [Clearbit](https://clearbit.com/docs)
-* [Coinbase](https://developers.coinbase.com/api)
-* [Parrot Drones](http://developer.parrot.com/docs/bebop/)
-* [CoinAPI](https://docs.coinapi.io/)
+### Getting Started
 
-You can view more in [the list on the wiki](https://github.com/slatedocs/slate/wiki/Slate-in-the-Wild).
+1. Fork this repository on Github.
+2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/beautiful-docs.git`
+3. `cd beautiful-docs`
+4. Grab the slate image (`docker pull slatedocs/slate`) or build the docker image for the repository (`docker build . -t slatedocs/slate`).
 
-Questions? Need Help? Found a bug?
---------------------
+### Build your Docs
 
-If you've got questions about setup, deploying, special feature implementation in your fork, or just want to chat with the developer, please feel free to [start a thread in our Discussions tab](https://github.com/slatedocs/slate/discussions)!
+To use Docker to just build your site, run:
 
-Found a bug with upstream Slate? Go ahead and [submit an issue](https://github.com/slatedocs/slate/issues). And, of course, feel free to submit pull requests with bug fixes or changes to the `dev` branch.
+```
+docker run --rm --name slate -v $(pwd):/srv/slate slatedocs/slate build
+```
 
-Contributors
---------------------
+After this command completes, you should see the built artifacts for your site in the `$(pwd)/build` directory, which you can then statically serve for your website.
 
-Slate was built by [Robert Lord](https://lord.io) while at [TripIt](https://www.tripit.com/). The project is now maintained by [Matthew Peveler](https://github.com/MasterOdin) and [Mike Ralphson](https://github.com/MikeRalphson).
+_Note_: You may omit the final `build` argument and get the same result. By default, if given no command, the Dockerfile will run `build`.
 
-Thanks to the following people who have submitted major pull requests:
+### Serve your Docs for Development
 
-- [@chrissrogers](https://github.com/chrissrogers)
-- [@bootstraponline](https://github.com/bootstraponline)
-- [@realityking](https://github.com/realityking)
-- [@cvkef](https://github.com/cvkef)
+If you wish to run the development server for Slate to aid in working on the site, run:
 
-Also, thanks to [Sauce Labs](http://saucelabs.com) for sponsoring the development of the responsive styles.
+```
+docker run --rm --name slate -p 4567:4567 -v $(pwd):/srv/slate slatedocs/slate serve
+```
+
+and you will be able to access your site at http://localhost:4567 until you stop the running container process.
+
+### Deploy your Docs to GitHub Pages
+
+Publishing your API documentation couldn't be more simple.
+
+Run `./deploy.sh --push-only` once. After that, GitHub actions should do the building and deployment for you.
+
+Done! Your changes should now be live on http://yourusername.github.io/beautiful-docs. Note that it can take some minutes until your docs are deployed, especially if this is your first time.

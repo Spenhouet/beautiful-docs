@@ -1,0 +1,19 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build via Docker",
+            "type": "shell",
+            "command": "docker run --rm --name slate -v $(pwd):/srv/slate slatedocs/slate build",
+            "problemMatcher": []
+        },
+        {
+            "label": "serve via Docker",
+            "type": "shell",
+            "command": "docker run --rm --name slate -p 4567:4567 -v $(pwd):/srv/slate slatedocs/slate serve",
+            "problemMatcher": []
+        }
+    ]
+}

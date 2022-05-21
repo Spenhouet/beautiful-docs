@@ -36,6 +36,16 @@ html, body {
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
+a { 
+  text-decoration: none;
+  font-weight: bold;
+  color: $nav-active-text;
+}
+
+a:hover { 
+  color: #0a73bf;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
@@ -49,6 +59,7 @@ html, body {
 
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
+  font-family: sans-serif;
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -59,8 +70,9 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
+  border-right: 1px solid $nav-border;
 
   // language selector for mobile devices
   .lang-selector {
@@ -74,7 +86,9 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
+    margin: auto;
+    max-width: 80%;
+    margin-top: 15px;
     margin-bottom: $logo-margin;
   }
 
@@ -82,7 +96,7 @@ html, body {
     position: relative;
 
     input {
-      background: $nav-bg;
+      background: transparent;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
@@ -112,7 +126,7 @@ html, body {
     transition-property: height, margin;
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
-    background: $nav-subitem-bg;
+    background: $nav-active-bg;
     &.visible {
       height: 30%;
       margin-bottom: 1em;
@@ -176,24 +190,56 @@ html, body {
 
   .toc-footer {
     padding: 1em 0;
-    margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    margin: 1em 15px 0 15px;
+    border-top: 1px solid $nav-footer-border-color;
 
     li,a {
-      color: $nav-text;
+      color: $nav-footer-text;
       text-decoration: none;
     }
 
     a:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
 
     li {
       font-size: 0.8em;
       line-height: 1.7;
       text-decoration: none;
+      overflow-x: visible;
+      display: inline;
+      padding: 0
+    }
+
+    li::after {
+      /*
+       This has to be space, tab or other
+       breakable white-space character:
+      */
+      content: " ";
+      word-spacing: 1em;
+      background-image: linear-gradient(
+        -0.2turn,
+        transparent 0 calc(50% - 0.03em),
+        currentcolor 0 calc(50% + 0.03em),
+        transparent 0
+      );
+    }
+
+    .cta {
+      padding: 10px;
+      background: #ff7a85;
+      border-radius: 7.2px;
+      font-size: 15px !important;
+      color: #fff;
+      text-decoration: none !important;
     }
   }
+}
+
+.toc-link {
+  margin-right: 37px;
+  border-radius: 0px 8px 8px 0;
 }
 
 .toc-link, .toc-footer li {
@@ -207,6 +253,7 @@ html, body {
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
+
 }
 
 // button to show navigation on mobile devices
@@ -214,11 +261,12 @@ html, body {
   span {
     display: block;
     $side-pad: $main-padding / 2 - 8px;
-    padding: $side-pad $side-pad $side-pad;
-    background-color: rgba($main-bg, 0.7);
+    padding: 10px;
+    margin-top: 5px;
+    background-color: rgba($nav-button-bg, 0.7);
     transform-origin: 0 0;
-    transform: rotate(-90deg) translate(-100%, 0);
-    border-radius: 0 0 0 5px;
+    // transform: rotate(-90deg) translate(-100%, 0);
+    border-radius: 0 8px 8px 0;
   }
   padding: 0 1.5em 5em 0; // increase touch size area
   display: none;
@@ -273,23 +321,25 @@ html, body {
   .lang-selector {
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    top: 15px;
+    right: 0px;
   }
 }
 
 .lang-selector {
-  display: flex;
-  background-color: $lang-select-bg;
-  width: 100%;
   font-weight: bold;
-  overflow-x: auto;
   a {
-    display: inline;
+    display: block;
+    float:left;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
     line-height: 30px;
     outline: 0;
+    border-radius: 8px;
+    background: #ffffff52;
+    margin-right: 8px;
+
 
     &:active, &:focus {
       background-color: $lang-select-pressed-bg;
@@ -299,6 +349,7 @@ html, body {
     &.active {
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
     }
   }
 
@@ -314,7 +365,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 // This is all the stuff with the light background in the left half of the page
 
-.content {
+.content .section {
   // fixes webkit rendering bug for some: see #538
   -webkit-transform: translateZ(0);
   // to place content above the dark box
@@ -328,10 +379,21 @@ html, body {
   }
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
-    margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
+
+    @extend %left-col;
+  }
+
+  &>.has-code {
+    margin-right: $examples-width;
+
+    @extend %left-col;
+  }
+
+  &>aside.has-code {
+    margin-right: $examples-width + $examples-margin;
 
     @extend %left-col;
   }
@@ -345,16 +407,31 @@ html, body {
     clear:both;
   }
 
+  h1, h2, h3, h4, h5, h6{
+    font-family: sans-serif;
+    color: $header-text;
+  }
+
+  h1, h2 {
+
+  }
+
   h1 {
     @extend %header-font;
     font-size: 25px;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    margin-top: $main-padding;
     margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    padding-top: $main-padding;
+    padding-bottom: 0.5em;
+    border-top: 1px solid $nav-border;
+    width: 100%;
+
+    font-family: sans-serif;
+  }
+
+  h1:first-of-type {
+    padding-top: 10vw;
+    border-top-width: 0;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -365,10 +442,9 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 19px;
-    margin-top: 4em;
+    margin-top: $main-padding;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
-    padding-top: 1.2em;
+    padding-top: $main-padding;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
   }
@@ -441,7 +517,7 @@ html, body {
   }
 
   p, li, dt, dd {
-    line-height: 1.6;
+    line-height: 1.7;
     margin-top: 0;
   }
 
@@ -469,6 +545,8 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    border-radius: 0px 8px 8px 0px;
+    margin-right: $examples-margin;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -511,17 +589,15 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 // This is all the stuff that appears in the right half of the page
 
-.content {
+.content .section {
   &>div.highlight {
     clear:none;
   }
-
   pre, blockquote {
-    background-color: $code-bg;
     color: #fff;
 
-    margin: 0;
-    width: $examples-width;
+    margin: 0 $examples-margin 0 0;
+    width: $examples-width -  $examples-margin;
 
     float:right;
     clear:right;
@@ -543,14 +619,16 @@ html, body {
     @extend %code-font;
     padding-top: 2em;
     padding-bottom: 2em;
-    padding: 2em $main-padding;
+    padding: 2em 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 24px hsla(0, 0%, 0%, .2);
+    background-color: $code-bg;
   }
 
   blockquote {
     &>p {
-      background-color: $code-annotation-bg;
       padding: $code-annotation-padding 2em;
-      color: #eee;
+      color: $code-annotation-text;
     }
   }
 }
@@ -591,24 +669,32 @@ html, body {
 
   %left-col {
     margin-right: 0;
+    border-radius: 0%;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   .toc-wrapper .lang-selector {
     display: block;
+    padding: 0 10px;
   }
 
   .page-wrapper .lang-selector {
     display: none;
   }
 
+  .content .section h2 {
+    margin-top: 0;
+  }
+
   %right-col {
     width: auto;
     float: none;
+    margin-right: 0;
+    -webkit-box-shadow: None;
+    box-shadow: None;
   }
 
-  %right-col + %left-col {
-    margin-top: $main-padding;
-  }
 }
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
@@ -626,6 +712,8 @@ html, body {
   opacity: 0.4;
   height: 18px;
   width: 18px;
+  position: absolute;
+  right: $examples-margin + 2%;
 }
 
 .copy-clipboard:hover {
