@@ -23,7 +23,7 @@ $(function () {
   $('h1').each(function () {
     $(this).nextUntil('h1').addBack().wrapAll('<div class="section"></div>');
   });
-  $('blockquote').siblings('h1, h2, h3, h4, h5, h6, p, table, ul, ol, aside, dl').addClass('has-code')
+  $('blockquote, .highlight').siblings('h1, h2, h3, h4, h5, h6, p, table, ul, ol, aside, dl').addClass('has-code')
 });
 
 window.onpopstate = function () {
