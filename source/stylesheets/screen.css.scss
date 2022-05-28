@@ -609,7 +609,7 @@ a:hover {
     &>p { margin: 0; }
 
     a {
-      color: #fff;
+      color: $link-text;
       text-decoration: none;
       border-bottom: dashed 1px #ccc;
     }
