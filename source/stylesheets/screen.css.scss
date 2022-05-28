@@ -38,12 +38,9 @@ html, body {
 
 a { 
   text-decoration: none;
+  border-bottom: dashed 1px #ccc;
+  color: $link-text;
   font-weight: bold;
-  color: $nav-active-text;
-}
-
-a:hover { 
-  color: #0a73bf;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -607,12 +604,6 @@ a:hover {
     @extend %right-col;
 
     &>p { margin: 0; }
-
-    a {
-      color: $link-text;
-      text-decoration: none;
-      border-bottom: dashed 1px #ccc;
-    }
   }
 
   pre {
